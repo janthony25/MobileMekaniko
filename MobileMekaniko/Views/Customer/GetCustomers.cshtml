@@ -1,0 +1,36 @@
+﻿@model List<MobileMekaniko.Models.Dto.CustomerListSummaryDto>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h3 class="text-center mt-5">@ViewData["Title"]</h3>
+
+<div class="container text-end mt-5 mb-5">
+    <button class="btn btn-primary" id="btnAddCustomer"><i class="bi bi-plus-lg"></i> Customer</button>
+</div>
+
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Email Address</th>
+                <th class="text-center">Contact #</th>
+                <th class="text-center">Date Added</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tblBody">
+
+        </tbody>
+    </table>
+</div>
+
+@Html.Partial("_AddCustomerModal")
+@Html.Partial("_CustomerUpdateDeleteModal")
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/customer.js"></script>

@@ -1,0 +1,43 @@
+﻿@model MobileMekaniko.Models.Dto.UpdateDeleteCustomerDto
+
+<!-- Customer Modal -->
+<div class="modal fade" id="UpdateDeleteCustomerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="updateDeleteModalTitle"></h1>
+                <button type="button" class="btn-close" id="Close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                <input type="hidden" id="CustomerId" asp-for="CustomerId" />
+                <div class="mb-4">
+                    <label asp-for="CustomerName" class="mb-2"></label>
+                    <input type="text" id="UpdateDeleteCustomerName" asp-for="CustomerName" class="form-control" />
+                    <span id="UpdateDeleteCustomerNameError" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="CustomerEmail" class="mb-2"></label>
+                    <input type="email" id="UpdateDeleteCustomerEmail" asp-for="CustomerEmail" class="form-control" />
+                    <span id="UpdateDeleteCustomerEmailError" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="CustomerNumber" class="mb-2"></label>
+                    <input type="text" id="UpdateDeleteCustomerNumber" asp-for="CustomerNumber" class="form-control" />
+                    <span id="UpdateDeleteCustomerNumberError" class="text-danger"></span>
+                </div>
+                <div class="mb-4" id="DateEditedContainer">
+                    <label asp-for="DateEdited" class="mb-2"></label>
+                    <input id="DateEdited" type="text" asp-for="DateEdited" class="form-control" readonly />
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                @* <button type="button" class="btn btn-secondary" id="Close" data-bs-dismiss="modal">Close</button> *@
+                <button type="submit" class="btn btn-primary" id="Update" onclick="UpdateCustomer();">Update</button>
+                <button type="submit" class="btn btn-danger" id="Delete" onclick="DeleteCustomer();" style="display:none">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
