@@ -36,7 +36,7 @@ function GetCustomer() {
                             <td class="text-center">${dateAdded}</td>
                             <div>   
                                 <td class="text-center">
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-car-front"></i> View</a>
+                                    <a href="#" class="btn btn-primary btn-sm" onclick="GetCustomerCars(${item.customerId});"><i class="bi bi-car-front"></i> View</a>
                                     <a href="#" class="btn btn-danger btn-sm ms-2"  onclick="ViewCustomerModal(${item.customerId}, 'delete');"><i class="bi bi-trash3"></i></a>
                                 </td>
                             </div>
@@ -338,4 +338,9 @@ function UpdateCustomer() {
             alert('An error occurred while updating customer.');
         }
     });
+}
+
+// View Custoemr Cars
+function GetCustomerCars(customerId) {
+   window.location.href = `/customer/GetCustomerCars/${customerId}`;
 }

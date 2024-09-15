@@ -9,6 +9,7 @@ namespace MobileMekaniko.Repository.IRepository
         Task<UpdateDeleteCustomerDto> GetCustomerForUpdateDeleteAsync(int id);
         Task DeleteCustomerByIdAsync(int id);
         Task UpdateCustomerByIdAsync(UpdateDeleteCustomerDto model);
+        Task<List<CustomerCarSummaryDto>> GetCustomerCarListAsync(int id);
         
     }
 }

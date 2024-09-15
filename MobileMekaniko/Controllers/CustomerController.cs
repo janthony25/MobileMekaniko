@@ -100,5 +100,12 @@ namespace MobileMekaniko.Controllers
             }
             return Json(new { success = false, message = "Model validation failed." });
         }
+
+        // GET : Customer Car List
+        public async Task<IActionResult> GetCustomerCars(int id)
+        {
+            var customerCar = await _unitOfWork.Customer.GetCustomerCarListAsync(id);
+            return View(customerCar);
+        }
     }
 }

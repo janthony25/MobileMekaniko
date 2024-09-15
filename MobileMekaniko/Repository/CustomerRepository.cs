@@ -42,6 +42,30 @@ namespace MobileMekaniko.Repository
             await _data.SaveChangesAsync();
         }
 
+        public async Task<List<CustomerCarSummaryDto>> GetCustomerCarListAsync(int id)
+        {
+            return await _data.Customers
+                .Include(c => c.Car)
+                    .ThenInclude(car => car.CarMake)
+                        .ThenInclude(cmake => cmake.Make)
+                .Include(c => c.Car)
+                    .ThenInclude(car => car.CarModel)
+                        .ThenInclude(cmodel => cmodel.Model)
+                .Where(c => c.CustomerId == id)
+                .SelectMany(c => c.Car.DefaultIfEmpty(), (customer, car) => new CustomerCarSummaryDto
+                {
+                    CustomerId = customer.CustomerId,
+                    CustomerName = customer.CustomerName,
+                    CustomerEmail = customer.CustomerEmail,
+                    CustomerNumber = customer.CustomerNumber,
+                    CarId = car.CarId,
+                    CarRego = car.CarRego,
+                    MakeName = car.CarMake.Select(cm => cm.Make.MakeName).FirstOrDefault(),
+                    ModelName = car.CarModel.Select(cm => cm.Model.ModelName).FirstOrDefault(),
+                    CarYear = car.CarYear
+                }).ToListAsync();
+        }
+
         public async Task<UpdateDeleteCustomerDto> GetCustomerForUpdateDeleteAsync(int id)
         {
             return await _data.Customers

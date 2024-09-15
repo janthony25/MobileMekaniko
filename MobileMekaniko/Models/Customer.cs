@@ -22,5 +22,8 @@ namespace MobileMekaniko.Models
 
         [DisplayName("Last Edited")]
         public DateTime? DateEdited { get; set; }
+
+        // 1-to-M Customer-Car
+        public ICollection<Car> Car { get; set; }   
     }
 }
